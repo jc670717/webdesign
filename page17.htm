@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>css menu</title>
+
+	<style>
+		.menu {
+			list-style-type: none;
+		}
+		.menu li {
+			display: inline-block;
+			text-align: center;
+			width: 100px;
+			margin: 1px;
+			padding: 10px 0;
+			border: 1px solid black;
+			white-space: nowrap;
+			overflow: hidden;
+			background-color: lightblue;
+		}
+		.menu li:hover{
+			background-color: lightcoral;
+		}
+
+
+		.menu2 {
+			list-style-type: none;
+			width: 100px;
+			margin: 0;
+			padding: 0;
+			border: 1px solid black;
+		}
+		.menu2 li {
+			text-align: center;
+			width: 100px;
+			padding: 10px 0;
+			border-bottom: 1px solid black;
+			white-space: nowrap;
+			overflow: hidden;
+			background-color: ;
+			cursor: pointer;
+		}
+		.menu2 li:last-child {
+			border-bottom: none;
+		}
+		.menu2 li:hover {
+			color: white;
+			background-color: gray;
+		}
+
+	</style>
+</head>
+<body>
+	<h2>css pseudo-classes</h2>
+
+	<ul class="menu">
+		<li>Black Tea with Milk</li>
+		<li>Coffee</li>
+		<li>Tea</li>
+		<li>Milk</li>
+		<li>Juice</li>
+		<li>Water</li>
+		<li>Black Tea with Milk</li>
+	</ul>
+
+	<ul class="menu2">
+		<li>Black Tea with Milk</li>
+		<li>Coffee</li>
+		<li>Tea</li>
+		<li>Milk</li>
+		<li>Juice</li>
+		<li>Water</li>
+		<li>Black Tea with Milk</li>
+	</ul>
+
+
+	<p><a href="index.htm">回首頁</a></p>
+</body>
+</html>
