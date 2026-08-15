@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>css box model</title>
+	<style>
+		.text-green {color: green;}
+		#header {
+			background: lightcoral;
+			width: 400px;
+			height: 60px;
+		}
+		#menu {
+			background: lightblue;
+			width: 100px;
+			height: 200px;
+			float: left;
+		}
+		#content {
+			background: lightcyan;
+			width: 300px;
+			height: 200px;
+			float: left;
+		}
+		#ad1 {
+			width: 100%;
+			height: 40px;
+		}
+		#news {
+			background: lightgreen;
+			width: 200px;
+			height: 160px;
+			float: left;
+		}
+		#ad2 {
+			background: lightpink;
+			width: 100px;
+			height: 160px;
+			float: left;
+		}
+		#logo {
+			background-image: url("imgs/yahoo.png");
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 120px;
+			height: 40px;
+			float: left;
+			margin: 10px;
+		}
+		#city {
+			width: 100px;
+			float: left;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h2>css box model</h2>
+	<div class="text-green" id="header">
+		<div id="logo"></div>
+		<div id="city">台北市 28度</div>
+	</div>
+	<div class="text-green" id="menu">
+		<ul>
+			<li>新聞</li>
+			<li>股市</li>
+			<li>運動</li>
+			<li>新聞</li>
+			<li>股市</li>
+			<li>運動</li>
+			<li>新聞</li>
+			<li>股市</li>
+		</ul>
+	</div>
+	<div class="text-green" id="content">
+		<div id="ad1">ad1</div>
+		<div id="news">你的德國車可能不是德國製！賓士、BMW產地大揭密 Toyota「牛魔王」竟來自奧地利｜汽車小學堂</div>
+		<div id="ad2">ad2</div>
+	</div>
+	<div style="clear: both;"></div>
+	<p><a href="index.htm">回首頁</a></p>
+</body>
+</html>
