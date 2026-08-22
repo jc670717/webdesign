@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專業響應式網頁 - 圖片穩定版</title>
+    
+    <!-- 1. 引入 Bootstrap 本地端 CSS (請確保路徑夾內有此檔案) -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        /* 全域樣式修正 */
+        body, html {
+            overflow-x: hidden;
+            font-family: "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+            background-color: #fcfcfc;
+        }
+
+        /* --- 輪播圖 100% 滿版關鍵 CSS --- */
+        #mainCarousel {
+            width: 100%;
+            background-color: #333; /* 圖片未載入前的底色 */
+        }
+
+        .carousel-img {
+            width: 100% !important;
+            height: 65vh; /* 佔據螢幕高度 65% */
+            min-height: 350px;
+            object-fit: cover; /* 確保圖片不變形且填滿寬度 */
+            display: block;
+        }
+
+        /* --- 卡片區塊樣式 --- */
+        .card-section {
+            padding: 80px 0;
+        }
+
+        .card {
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #fff;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+        }
+
+        .card-img-custom {
+            height: 220px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        /* 輪播文字遮罩，強化閱讀 */
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 8px;
+            padding: 20px;
+            bottom: 20%;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-img {
+                height: 45vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 2. 導航欄 (Navbar) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">TECH_LAB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">服務項目</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">聯絡我們</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. 輪播圖 (Carousel) - 測試過穩定的 Crossfade 連結 -->
+    <div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <!-- Slide 1: 科技辦公室 (已測試) -->
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920" class="carousel-img" alt="Stable Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-5 fw-bold">創新的數位轉型</h2>
+                    <p>我們協助企業在變動的市場中建立穩健的技術基礎。</p>
+                </div>
+            </div>
+            <!-- Slide 2: 筆電與代碼 (已測試) -->
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1920" class="carousel-img" alt="Stable Image 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-5 fw-bold">極致的代碼品質</h2>
+                    <p>專注於原生技術開發，提供最流暢的使用者體驗。</p>
+                </div>
+            </div>
+            <!-- Slide 3: 伺服器與數據 (已測試) -->
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1920" class="carousel-img" alt="Stable Image 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-5 fw-bold">雲端運算架構</h2>
+                    <p>構建可擴展的系統，支撐您業務的快速增長。</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- 4. 卡片區塊 (Cards) - 已測試穩定連結 -->
+    <main class="card-section">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=600" class="card-img-top card-img-custom" alt="Design Service" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">介面設計</h5>
+                            <p class="card-text text-muted">融合美學與易用性，打造令人印象深刻的產品。</p>
+                            <button class="btn btn-outline-primary btn-action px-4">了解更多</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600" class="card-img-top card-img-custom" alt="Development Service" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">高效開發</h5>
+                            <p class="card-text text-muted">採用現代前端技術，確保每一行代碼都有價值。</p>
+                            <button class="btn btn-outline-primary btn-action px-4">了解更多</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=600" class="card-img-top card-img-custom" alt="Strategy Service" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">市場策略</h5>
+                            <p class="card-text text-muted">透過技術手段分析市場，制定精準的投放計畫。</p>
+                            <button class="btn btn-outline-primary btn-action px-4">了解更多</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 5. 引入 Bootstrap 本地端 JS (包含 Popper.js) -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- 6. 原生 JavaScript 事件處理 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 監聽按鈕點擊
+            const actionButtons = document.querySelectorAll('.btn-action');
+            actionButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const title = e.target.closest('.card-body').querySelector('.card-title').innerText;
+                    alert(`您好！感謝您對「${title}」服務感興趣，我們將盡快與您聯繫。`);
+                });
+            });
+
+            // 圖片防錯處理：如果線上圖片失效，自動顯示一個 Placeholder 佔位圖
+            const allImages = document.querySelectorAll('img');
+            allImages.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = 'https://via.placeholder.com/1920x1080?text=Image+Loading+Error';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

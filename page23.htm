@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH_LAB - 專業科技與數位轉型服務</title>
+
+    <!-- 1. 引入 Bootstrap 本地端 CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- 2. 引入 Font Awesome 本地端 CSS (取代原本的 Bootstrap Icons) -->
+    <link rel="stylesheet" href="css/all.min.css">
+
+    <style>
+        /* --- 全域與字體設定 --- */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* --- 首頁輪播高度與背景設定 --- */
+        .carousel-img-bg {
+            background-size: cover;
+            background-position: center;
+            min-height: 480px;
+            height: 60vh;
+        }
+
+        /* --- 服務卡片懸浮動效 (Hover Effect) --- */
+        .service-card {
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #ffffff;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .service-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.04);
+        }
+
+        /* 圖標外框圓形背景 */
+        .icon-box {
+            width: 52px;
+            height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        /* 手機版適配微調 */
+        @media (max-width: 768px) {
+            .carousel-img-bg {
+                min-height: 400px;
+                height: 50vh;
+            }
+            .service-img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- 2. 導航欄 (Navbar) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-3" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" href="#top">
+                <span class="bg-primary text-white px-2 py-1 rounded fs-5">
+                    <i class="fa-solid fa-square-code"></i>
+                </span>
+                <span>TECH<span class="text-primary">_</span>LAB</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="切換導航">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link active px-3" href="#top">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#about">關於我們</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#services">服務項目</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#contact">聯絡我們</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <a href="#contact" class="btn btn-primary btn-sm px-4 py-2 rounded-pill fw-semibold shadow-sm">
+                            <i class="fa-solid fa-comments me-1"></i>立即諮詢
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+	<!-- 3. 首頁輪播圖 (Hero Carousel) -->
+	<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+	    <!-- 下方指示點 -->
+	    <div class="carousel-indicators">
+	        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+	        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+	        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	    </div>
+
+	    <div class="carousel-inner">
+	        <!-- 第一張 -->
+	        <div class="carousel-item active" data-bs-interval="5000">
+	            <div class="carousel-img-bg d-flex align-items-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.78)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920');">
+	                <div class="container text-white text-center">
+	                    <div class="col-lg-8 mx-auto">
+	                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-bold mb-3">全方位數位夥伴</span>
+	                        <h1 class="display-4 fw-bold mb-3">創新的數位轉型架構</h1>
+	                        <p class="lead text-light opacity-90 mb-4">打造具備高可用性與極致效能的技術底層。</p>
+	                        <a href="#services" class="btn btn-primary btn-lg px-4 py-2 rounded-pill fw-semibold shadow-sm">探索服務項目</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- 第二張 -->
+	        <div class="carousel-item" data-bs-interval="5000">
+	            <div class="carousel-img-bg d-flex align-items-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.78)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1920');">
+	                <div class="container text-white text-center">
+	                    <div class="col-lg-8 mx-auto">
+	                        <span class="badge bg-info-subtle text-info border border-info-subtle px-3 py-2 rounded-pill fw-bold mb-3">原生標準工程</span>
+	                        <h2 class="display-4 fw-bold mb-3">極致輕量與流暢體驗</h2>
+	                        <p class="lead text-light opacity-90 mb-4">專注純粹的前端工藝，實現秒開的極致反應速度。</p>
+	                        <a href="#services" class="btn btn-info text-white btn-lg px-4 py-2 rounded-pill fw-semibold shadow-sm">查看研發優勢</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- 第三張 -->
+	        <div class="carousel-item" data-bs-interval="5000">
+	            <div class="carousel-img-bg d-flex align-items-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.78)), url('https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=600');">
+	                <div class="container text-white text-center">
+	                    <div class="col-lg-8 mx-auto">
+	                        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-bold mb-3">雲端防護</span>
+	                        <h2 class="display-4 fw-bold mb-3">企業級雲端資安體系</h2>
+	                        <p class="lead text-light opacity-90 mb-4">彈性擴展與災難備援機制，保障核心商業數據。</p>
+	                        <a href="#contact" class="btn btn-success btn-lg px-4 py-2 rounded-pill fw-semibold shadow-sm">預約專人洽談</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <!-- 左右切換按鈕 -->
+	    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+	        <span class="carousel-control-prev-icon p-3 bg-dark bg-opacity-25 rounded-circle" aria-hidden="true"></span>
+	        <span class="visually-hidden">Previous</span>
+	    </button>
+	    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+	        <span class="carousel-control-next-icon p-3 bg-dark bg-opacity-25 rounded-circle" aria-hidden="true"></span>
+	        <span class="visually-hidden">Next</span>
+	    </button>
+	</div>
+
+    <!-- 4. 關於我們重點 (About Highlights) -->
+    <section class="py-5 bg-white border-bottom" id="about">
+        <div class="container py-4">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h6 class="text-primary fw-bold text-uppercase">About TECH_LAB</h6>
+                    <h2 class="display-6 fw-bold">信義核心，專注高品質數位基礎建設</h2>
+                    <p class="text-muted">我們位於台北市信義區商業核心，結合工程嚴謹度與現代美學，為企業提供穩固的數位產品。</p>
+                </div>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3">
+                    <div class="p-4 rounded-4 bg-light shadow-sm h-100">
+                        <i class="fa-solid fa-gauge-high text-primary fa-shake fs-1 mb-2"></i>
+                        <h5 class="fw-bold">100% 原生極速</h5>
+                        <p class="text-muted small mb-0">無多餘框架包袱，享受極致流暢。</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-4 rounded-4 bg-light shadow-sm h-100">
+                        <i class="fa-solid fa-mobile-screen-button text-success fa-shake fs-1 mb-2"></i>
+                        <h5 class="fw-bold">全響應式適配</h5>
+                        <p class="text-muted small mb-0">完美相容手機、平板與電腦。</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-4 rounded-4 bg-light shadow-sm h-100">
+                        <i class="fa-solid fa-shield-halved fa-shake text-info fs-1 mb-2"></i>
+                        <h5 class="fw-bold">嚴格資安標準</h5>
+                        <p class="text-muted small mb-0">SSL 全站加密與安全防護機制。</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-4 rounded-4 bg-light shadow-sm h-100">
+                        <i class="fa-solid fa-headphones  fa-shake text-warning fs-1 mb-2"></i>
+                        <h5 class="fw-bold">7/24 專業維護</h5>
+                        <p class="text-muted small mb-0">全天候即時監控與技術顧問。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	<!-- 5. 服務項目區塊 -->
+	<section class="py-5 bg-light" id="services">
+	    <div class="container py-4">
+	        <div class="row text-center mb-5">
+	            <div class="col-lg-8 mx-auto">
+	                <span class="badge bg-primary text-white px-3 py-2 rounded-pill fw-semibold mb-2">
+	                    <i class="fa-solid fa-layer-group me-1"></i> OUR SERVICES
+	                </span>
+	                <h2 class="display-5 fw-bold">全方位核心服務項目</h2>
+	                <p class="text-muted">我們提供從設計到維運的一站式技術支援，確保您的企業在數位轉型中保持領先。</p>
+	            </div>
+	        </div>
+
+	        <!-- 九宮格容器 -->
+	        <div class="row g-4">
+	            
+	            <!-- 01. UI/UX 介面設計 -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="UI/UX" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-primary">人氣首選</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-primary-subtle text-primary">
+	                                <i class="fa-solid fa-palette fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">UI/UX 介面設計</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">繪製高保真原型，優化使用者旅程，大幅提升產品轉換率。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="UI/UX 介面設計" data-desc="包含 Figma 原型設計與無障礙介面優化。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 02. 高效能前端開發 -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="Frontend" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-success">核心實力</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-success-subtle text-success">
+	                                <i class="fa-solid fa-code fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">高效能前端開發</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">使用原生 JS 與 Bootstrap 打造秒開網頁，追求極致流暢度。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="高效能前端開發" data-desc="符合 W3C 標準，極致 SEO 優化與全裝置適配。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 03. 雲端運算與資安 (更新圖片網址) -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="Cloud" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-info text-white">高可用性</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-info-subtle text-info">
+	                                <i class="fa-solid fa-satellite-dish fa-xl"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">雲端運算與資安</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">配置 WAF 防火牆與自動擴展架構，守護您的核心資產。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="雲端運算與資安" data-desc="提供異地備援與 DDoS 緩解方案。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 04. 市場策略分析 -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="Marketing" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-warning text-dark">數據驅動</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-warning-subtle text-warning">
+	                                <i class="fa-solid fa-chart-line fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">市場策略分析</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">整合 GA4 數據埋點，透過漏斗分析精準掌握用戶行為。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="市場策略分析" data-desc="提供商業智慧 (BI) 報表與 SEO 關鍵字佈局。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 05. AI 流程自動化 (更新圖片網址) -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="AI Automation" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-dark">智慧創新</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-secondary-subtle text-dark">
+	                                <i class="fa-solid fa-microchip fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">AI 流程自動化</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">導入 LLM 與企業知識庫，建構智能客服與自動工作流。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="AI 流程自動化" data-desc="串接 ChatGPT API 與企業內部數據檢索。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 06. 行動應用開發 -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="Mobile" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-danger">跨平台</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-danger-subtle text-danger">
+	                                <i class="fa-solid fa-mobile-screen-button fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">行動應用開發</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">打造高效能 iOS 與 Android App，提供流暢的原生操作感。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="行動應用開發" data-desc="包含 Flutter 跨平台開發與上架審核諮詢。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 07. 電子商務系統 -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="Ecommerce" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-primary">高轉換</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-primary-subtle text-primary">
+	                                <i class="fa-solid fa-cart-shopping fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">電子商務系統</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">建構穩定且安全的線上商場，整合金流與庫存管理系統。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="電子商務系統" data-desc="支援多國語系、多幣別與金流支付串接。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 08. 大數據處理 (更新圖片網址) -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="Big Data" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-success">可視化</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-success-subtle text-success">
+	                                <i class="fa-solid fa-database fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">大數據處理</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">海量數據清洗與分析，提供具備商業決策價值的可視化圖表。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="大數據處理" data-desc="數據清洗 (ETL) 與可視化報表串接。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- 09. 維運與技術顧問 -->
+	            <div class="col-12 col-md-6 col-lg-4">
+	                <div class="card service-card h-100 shadow-sm rounded-4 overflow-hidden">
+	                    <div class="overflow-hidden position-relative">
+	                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" class="card-img-top service-img" alt="Consulting" loading="lazy">
+	                        <span class="position-absolute top-0 end-0 m-3 badge bg-info text-white">24/7 支援</span>
+	                    </div>
+	                    <div class="card-body p-4 d-flex flex-column">
+	                        <div class="d-flex align-items-center gap-3 mb-3">
+	                            <div class="icon-box bg-info-subtle text-info">
+	                                <i class="fa-solid fa-headset fs-4"></i>
+	                            </div>
+	                            <h4 class="card-title fw-bold fs-5 mb-0">維運與技術顧問</h4>
+	                        </div>
+	                        <p class="card-text text-muted mb-4 flex-grow-1">全天候監控與障礙排除，並提供企業專屬的一對一架構諮詢。</p>
+	                        <button class="btn btn-outline-primary rounded-pill w-100 fw-semibold btn-service-detail" data-title="維運與技術顧問" data-desc="包含伺服器維護與年度技術架構規劃服務。">
+	                            <i class="fa-solid fa-magnifying-glass me-1"></i>了解更多
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+
+	        </div> <!-- End Row -->
+	    </div> <!-- End Container -->
+	</section>
+
+    <!-- 6. 聯絡我們區塊 -->
+    <section class="py-5 bg-white" id="contact">
+        <div class="container py-4">
+            <div class="row g-4 g-lg-5">
+                <!-- 左側：聯絡資訊 -->
+                <div class="col-12 col-lg-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-light mb-4">
+                        <h4 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-building text-primary"></i>
+                            <span>TECH_LAB 台北總部</span>
+                        </h4>
+                        
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex align-items-start gap-3 bg-white p-3 rounded-3 shadow-xs">
+                                <div class="bg-primary-subtle text-primary p-2 rounded-3 fs-5 flex-shrink-0">
+                                    <i class="fa-solid fa-home"></i>
+                                </div>
+                                <div>
+                                    <span class="fw-bold text-dark d-block">公司地址</span>
+                                    <span class="text-secondary fw-semibold">台北市信義區忠孝東路五段100號</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3 bg-white p-3 rounded-3 shadow-xs">
+                                <div class="bg-success-subtle text-success p-2 rounded-3 fs-5 flex-shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="fw-bold text-dark d-block">客服電話</span>
+                                    <a href="tel:0227658888" class="text-decoration-none text-success fw-bold">(02) 2765-8888</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 地圖卡片 -->
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="card-header bg-dark text-white py-3 px-4 d-flex justify-content-between align-items-center">
+                            <span class="fw-bold d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-map-location-dot text-danger"></i>
+                                <span>動態地圖位置</span>
+                            </span>
+                            <a href="#" class="btn btn-sm btn-outline-light rounded-pill px-3">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i>開啟導航
+                            </a>
+                        </div>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://maps.google.com/maps?q=台北市信義區忠孝東路五段100號&t=&z=16&ie=UTF8&iwloc=&output=embed" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側：表單 -->
+                <div class="col-12 col-lg-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white h-100">
+                        <h3 class="fw-bold mb-4">線上專案需求諮詢</h3>
+                        <div id="formSuccessAlert" class="alert alert-success d-none p-4 rounded-4 text-center my-auto">
+                            <i class="fa-solid fa-circle-check fs-1 text-success d-block mb-2"></i>
+                            <h4 class="fw-bold">感謝您的諮詢！</h4>
+                            <button type="button" class="btn btn-outline-success rounded-pill mt-3" id="btnResetForm">再填寫一筆</button>
+                        </div>
+                        <form id="contactForm" novalidate>
+                            <!-- 表單欄位與之前相同 ... -->
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold shadow py-3">
+                                    <i class="fa-solid fa-paper-plane me-1"></i>立即送出諮詢
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 頁尾 (Footer) -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-5">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="bg-primary text-white px-2 py-1 rounded fs-5"><i class="fa-solid fa-square-code"></i></span>
+                        <span class="fw-bold fs-4">TECH_LAB</span>
+                    </div>
+                    <p class="text-secondary small">專注於前端架構與高效能網頁開發。</p>
+                </div>
+                <div class="col-6 col-md-4">
+                    <h6 class="text-white fw-bold mb-3">總部聯繫</h6>
+                    <p class="text-secondary small mb-1"><i class="fa-solid fa-location-dot text-primary me-2"></i>台北市信義區...</p>
+                    <p class="text-secondary small mb-1"><i class="fa-solid fa-phone text-success me-2"></i>(02) 2765-8888</p>
+                </div>
+            </div>
+            <hr class="border-secondary border-opacity-25 my-4">
+            <div class="text-center text-secondary small">
+                &copy; 2026 TECH_LAB. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JS 邏輯保持不變 ...
+    </script>
+</body>
+</html>
