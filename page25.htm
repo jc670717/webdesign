@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltaAgency - Empowering Modern Brands</title>
+    
+    <!-- 引入本地 Bootstrap 5 (請確保路徑正確) -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- 引入 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* 自定義樣式 */
+        :root {
+            --primary-color: #0d6efd;
+            --dark-overlay: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Hero 區塊設定 */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            color: white;
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 黑色半透明遮罩 */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-overlay);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 卡片樣式微調 */
+        .service-card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .btn-outline-primary-custom {
+            border: 1px solid #dee2e6;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .btn-outline-primary-custom:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section / 輪播區塊 -->
+    <section id="heroCarousel" class="carousel slide hero-section" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        
+        <div class="carousel-inner">
+            <!-- 第一張輪播圖 -->
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600');">
+                <div class="hero-overlay">
+                    <div class="hero-content text-center px-4">
+                        <h1 class="hero-title">Empowering Modern Brands to Build and Scale</h1>
+                        <p class="lead mb-4">VoltaAgency delivers end-to-end design, technology, and marketing solutions tailored to fast-growing startups and enterprises.</p>
+                        <div>
+                            <a href="#" class="btn btn-primary btn-lg me-2 px-4">Consult Our Experts</a>
+                            <a href="#" class="btn btn-light btn-lg px-4">View Case Studies</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 輪播控制按鈕 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </section>
+
+    <!-- Services Section / 服務項目區塊 -->
+    <div class="container py-5">
+        
+        <!-- 第一排：3 欄佈局 -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="UI/UX">
+                    <div class="card-body p-4">
+                        <h5 class="card-title">UI/UX & Identity Design</h5>
+                        <p class="card-text text-muted">We craft thoughtful, high-fidelity design prototypes and build holistic brand systems that drive customer retention.</p>
+                        <a href="#" class="btn btn-outline-primary-custom px-4">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Full-Stack">
+                    <div class="card-body p-4">
+                        <h5 class="card-title">Full-Stack Development</h5>
+                        <p class="card-text text-muted">Our engineering squad designs robust, high-performance web applications built to scale with zero downtime.</p>
+                        <a href="#" class="btn btn-outline-primary-custom px-4">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Growth">
+                    <div class="card-body p-4">
+                        <h5 class="card-title">Growth Optimization</h5>
+                        <p class="card-text text-muted">Data-driven SEO, conversion analytics, and paid performance marketing scaled to maximize return on ad spend.</p>
+                        <a href="#" class="btn btn-outline-primary-custom px-4">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二排：4 欄佈局 -->
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400" class="card-img-top" alt="CRM">
+                    <div class="card-body p-3">
+                        <h6 class="card-title">Custom CRM</h6>
+                        <p class="small text-muted">Automated pipelines designed to close deals faster and manage client lifecycles efficiently.</p>
+                        <a href="#" class="btn btn-outline-primary-custom btn-sm px-3">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=400" class="card-img-top" alt="Cloud">
+                    <div class="card-body p-3">
+                        <h6 class="card-title">Cloud Infrastructure</h6>
+                        <p class="small text-muted">Enterprise AWS & GCP server orchestration with seamless deployment mechanics.</p>
+                        <a href="#" class="btn btn-outline-primary-custom btn-sm px-3">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=400" class="card-img-top" alt="Mobile">
+                    <div class="card-body p-3">
+                        <h6 class="card-title">Native iOS & Android</h6>
+                        <p class="small text-muted">Highly optimized mobile applications featuring smooth animations and system integration.</p>
+                        <a href="#" class="btn btn-outline-primary-custom btn-sm px-3">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=400" class="card-img-top" alt="Cyber">
+                    <div class="card-body p-3">
+                        <h6 class="card-title">Cyber Security Audit</h6>
+                        <p class="small text-muted">Complete penetration testing and security hardening to safe-guard sensitive enterprise user data.</p>
+                        <a href="#" class="btn btn-outline-primary-custom btn-sm px-3">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 引入本地 Bootstrap JS (請確保路徑正確) -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 原生 JavaScript：若未來需要處理點擊事件或 API 串接
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("網頁已載入，準備就緒！");
+            
+            // 範例：點擊 Read More 按鈕後的邏輯
+            const readMoreButtons = document.querySelectorAll('.btn-outline-primary-custom');
+            readMoreButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const title = btn.parentElement.querySelector('.card-title').innerText;
+                    alert(`您點擊了：${title} 的詳細內容。`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
