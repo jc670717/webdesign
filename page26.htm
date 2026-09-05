@@ -3,81 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>form</title>
     
-    <!-- 引入本地 Bootstrap 5 (請確保路徑正確) -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- 引入 Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="js/bootstrap.bundle.min.js"></script>   
-
+    
 </head>
 <body>
 
+<div class="container py-3">
+    
+<h2>HTML</h2>
+<div class="mb-3">
+  <span>Email address (without label)</span>
+  <input type="email" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="email01" >Email address (with label)</label>
+  <input type="email" id="email01" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" >Example textarea</label>
+  <textarea id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
 
-<div class="container">
+<h2>Bootstrap</h2>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  <!-- <input type="email" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="name@example.com">
+  <input type="email" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="name@example.com"> -->
+  <div id="passwordHelpBlock" class="form-text">
+  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+</div>
 
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Email address</label>
-      <input type="email" class="form-control " id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>    
-    <input type="color" class="form-control form-control-color">
+</div>
 
-  <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="fEmail" placeholder="name@example.com">
-    <label for="fEmail">電子信箱地址</label>
-  </div>
-
-<form class="mb-3" id="loginForm">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" >
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-</form>
+<button type="button" class="btn btn-primary mb-3" id="btnSubmit">submit</button>
 
 <script>
-(() => {
-  'use strict';
+  (() => {
+    const btnSubmit = document.getElementById('btnSubmit');
 
-  const form = document.getElementById('loginForm');
-  const btn = document.getElementById('submitBtn');
+    if (!btnSubmit) {
+      return;
+    }
 
-  form.addEventListener('submit', (event) => {
-    // 阻止表單原生刷新送出行為
-    event.preventDefault();
+    const handleSubmit = () => {
+      // 避免重入（已 disabled 狀態下不執行）
+      if (btnSubmit.disabled) {
+        return;
+      }
 
-    // 1. 立即禁用按鈕，防止重複點擊
-    btn.disabled = true;
+      // 暫存按鈕原始內容
+      const originalContent = btnSubmit.innerHTML;
 
-    // 2. 注入 Bootstrap 5 Spinner 旋轉圖示與讀取中文字
-    btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>資料送出中...`;
+      // 進入 loading 狀態：禁用按鈕並插入 Bootstrap spinner
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="ms-1">loading</span>
+      `;
 
-    // 3. 模擬非同步請求 2 秒後完成
-    setTimeout(() => {
-      alert('報名成功！');
+      // 模擬非同步處理，2 秒後還原狀態
+      setTimeout(() => {
+        btnSubmit.innerHTML = originalContent;
+        btnSubmit.disabled = false;
+      }, 2000);
+    };
 
-      // 恢復按鈕狀態
-      btn.disabled = false;
-      btn.innerHTML = 'Submit';
-    }, 2000);
-  });
-})();
+    btnSubmit.addEventListener('click', handleSubmit);
+  })();
 </script>
 
+
+
+
+
+<div class="mb-3">
+  <label for="textarea01" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="textarea01" rows="3"></textarea>
+  <div class="form-text text-end" id="charCounter">0/200 words</div>
+</div>
+
+<script>
+  (() => {
+    const MAX_LIMIT = 200;
+    const textareaElement = document.getElementById('textarea01');
+    const counterElement = document.getElementById('charCounter');
+
+    if (!textareaElement || !counterElement) {
+      return;
+    }
+
+    const updateCharacterCount = () => {
+      // 取得當前字元長度
+      const currentLength = textareaElement.value.length;
+      
+      // 動態更新計數文字
+      counterElement.textContent = `${currentLength}/${MAX_LIMIT} words`;
+      
+      // 輔助視覺提示：達到上限時變更顏色樣式
+      if (currentLength >= MAX_LIMIT) {
+        counterElement.classList.add('text-danger');
+      } else {
+        counterElement.classList.remove('text-danger');
+      }
+    };
+
+    // 監聽 input 事件實現即時跳動
+    textareaElement.addEventListener('input', updateCharacterCount);
+  })();
+</script>
+
+
+<div class="row">
+    <div class="col-md-6">
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <label for="floatingInput">Email address</label>
+</div>      
+
+    </div>
+    <div class="col-md-6">
+<div class="form-floating">
+  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+  <label for="floatingPassword">Password</label>
+</div>        
+
+    </div>
+</div>
+
+<hr>
+<button type="button" class="btn btn-primary mb-3" id="btnAddUser">Add User</button>
+
+<div id="userContainer" class="d-flex flex-column gap-2">
+  <div class="row g-2 align-items-center user-row">
+    <div class="col-auto">
+      <label class="visually-hidden">Email</label>
+      <input type="text" readonly class="form-control-plaintext" value="email@example.com">
+    </div>
+    <div class="col-auto">
+      <label class="visually-hidden">Password</label>
+      <input type="password" class="form-control" placeholder="Password">
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-danger btn-delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<template id="userRowTemplate">
+  <div class="row g-2 align-items-center user-row">
+    <div class="col-auto">
+      <label class="visually-hidden">Email</label>
+      <input type="text" readonly class="form-control-plaintext" value="email@example.com">
+    </div>
+    <div class="col-auto">
+      <label class="visually-hidden">Password</label>
+      <input type="password" class="form-control" placeholder="Password">
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-danger btn-delete">Delete</button>
+    </div>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const btnAddUser = document.getElementById('btnAddUser');
+    const userContainer = document.getElementById('userContainer');
+    const userRowTemplate = document.getElementById('userRowTemplate');
+
+    if (!btnAddUser || !userContainer || !userRowTemplate) {
+      return;
+    }
+
+    // 1. 新增一筆資料列
+    const handleAddUser = () => {
+      const templateContent = userRowTemplate.content.cloneNode(true);
+      userContainer.appendChild(templateContent);
+    };
+
+    // 2. 透過事件委派處理刪除
+    const handleDeleteUser = (event) => {
+      const deleteButton = event.target.closest('.btn-delete');
+      if (!deleteButton) {
+        return;
+      }
+
+      const targetRow = deleteButton.closest('.user-row');
+      if (targetRow) {
+        targetRow.remove();
+      }
+    };
+
+    btnAddUser.addEventListener('click', handleAddUser);
+    userContainer.addEventListener('click', handleDeleteUser);
+  })();
+</script>
+
+<hr>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+  <span class="input-group-text">@</span>
+  <input type="text" class="form-control" placeholder="Server" aria-label="Server">
+</div>
+
+<select class="form-select mb-3" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+
+
+<div class="form-check mb-3">
+  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+  <label class="form-check-label" for="switchCheckDefault">Default switch checkbox input</label>
+</div>
+
+<div class="form-check form-switch mb-3">
+  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+  <label class="form-check-label" for="switchCheckDefault">Default switch checkbox input</label>
+</div>
+
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">Single toggle</label>
+
+<input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+<label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>
+
+
+<h2 class="mt-5">Validation</h2>
 
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
@@ -85,6 +244,9 @@
     <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
     <div class="valid-feedback">
       Looks good!
+    </div>
+    <div class="invalid-feedback">
+        Please choose a first name.
     </div>
   </div>
   <div class="col-md-4">
@@ -94,16 +256,18 @@
       Looks good!
     </div>
   </div>
+
   <div class="col-md-4">
-    <label for="validationCustomUsername" class="form-label">Username</label>
+    <label for="validationCustomUsername" class="form-label">Phone Number</label>
     <div class="input-group has-validation">
-      <span class="input-group-text" id="inputGroupPrepend">@</span>
-      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+      <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-phone"></i></span>
+      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" pattern="^09\d{8}$">
       <div class="invalid-feedback">
-        Please choose a username.
+        Please choose provide a valid phone number (09xxxxxxxx).
       </div>
     </div>
   </div>
+
   <div class="col-md-6">
     <label for="validationCustom03" class="form-label">City</label>
     <input type="text" class="form-control" id="validationCustom03" required>
@@ -123,7 +287,7 @@
   </div>
   <div class="col-md-3">
     <label for="validationCustom05" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="validationCustom05" required>
+    <input type="text" class="form-control" id="validationCustom05" required >
     <div class="invalid-feedback">
       Please provide a valid zip.
     </div>
@@ -144,162 +308,16 @@
   </div>
 </form>
 
-
-
-<!-- HTML 結構：將 class 改為 Font Awesome 語法 -->
-<div class="input-group mb-3">
-  <input type="password" class="form-control" id="passwordInput" placeholder="請輸入密碼">
-  <button class="btn btn-outline-secondary" type="button" id="togglePasswordBtn" aria-label="切換密碼顯示">
-    <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
-  </button>
-</div>
-
-<!-- 10 行乾淨的 JavaScript -->
 <script>
-const pwdInput = document.getElementById('passwordInput');
-const toggleBtn = document.getElementById('togglePasswordBtn');
-const toggleIcon = document.getElementById('togglePasswordIcon');
-
-toggleBtn.addEventListener('click', () => {
-  const isPassword = pwdInput.type === 'password';
-  pwdInput.type = isPassword ? 'text' : 'password';
-  toggleIcon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
-  pwdInput.focus();
-});
-</script>
-
-
-<div class="card shadow-sm">
-    <div class="card-header bg-white fw-bold">
-      意見回饋
-    </div>
-    <div class="card-body">
-      <!-- 步驟 1：放置 <textarea class="form-control" maxlength="200"> -->
-      <label for="feedbackContent" class="form-label text-secondary">詳細內容</label>
-      <textarea 
-        class="form-control" 
-        id="feedbackContent" 
-        rows="4" 
-        maxlength="200" 
-        placeholder="請輸入內容（最多 200 字）..."
-      ></textarea>
-
-      <div class="text-end text-muted small mt-1">
-        <span id="charCount">0</span> / 200 字
-      </div>
-    </div>
-</div>
-
-
-<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
-  'use strict';
+  'use strict'
 
-  const textarea = document.getElementById('feedbackContent');
-  const countDisplay = document.getElementById('charCount');
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
 
-  // 監聽 input 事件，支援鍵盤打字、刪除、剪下與貼上
-  textarea.addEventListener('input', () => {
-    const currentLength = textarea.value.length;
-    countDisplay.textContent = currentLength;
-  });
-})();
-</script>
-
-<form class="my-3">
-  <!-- 步驟 1：綠色按鈕「+ 新增同行成員」 -->
-  <div class="col-12 mb-3">
-    <button type="button" class="btn btn-success" id="addMemberBtn">
-      <i class="fa-solid fa-plus me-1"></i> 新增同行成員
-    </button>
-  </div>
-
-  <!-- 步驟 1：動態插入成員列的空容器 -->
-  <div id="memberList" class="d-flex flex-column gap-3"></div>
-</form>
-
-<script>
-(() => {
-  'use strict';
-
-  const addBtn = document.getElementById('addMemberBtn');
-  const memberList = document.getElementById('memberList');
-
-  // 生成單列成員 HTML 模板的函式
-  const createMemberRow = () => {
-    const row = document.createElement('div');
-    row.className = 'row row-cols-lg-auto g-3 align-items-center member-row';
-    row.innerHTML = `
-      <div class="col-12">
-        <label class="visually-hidden">Username</label>
-        <div class="input-group">
-          <div class="input-group-text">@</div>
-          <input type="text" class="form-control" name="memberName[]" placeholder="姓名 / 帳號" required>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <label class="visually-hidden">Preference</label>
-        <select class="form-select" name="memberPref[]">
-          <option selected value="">選擇偏好...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-
-      <div class="col-12">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="memberAgree[]" id="chk_${Date.now()}_${Math.random().toString(36).slice(2, 6)}">
-          <label class="form-check-label" for="chk_${Date.now()}_${Math.random().toString(36).slice(2, 6)}">
-            同意條款
-          </label>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <!-- 步驟 3：刪除按鈕 (設定 type="button" 與識別 class) -->
-        <button type="button" class="btn btn-danger btn-delete-row">
-          <i class="fa-solid fa-trash me-1"></i> 刪除
-        </button>
-      </div>
-    `;
-    return row;
-  };
-
-  // 步驟 2：點擊「新增」時在 #memberList 加入新行
-  addBtn.addEventListener('click', () => {
-    const newRow = createMemberRow();
-    memberList.appendChild(newRow);
-  });
-
-  // 步驟 3 & 4：使用事件委派 (Event Delegation) 實作精準刪除
-  memberList.addEventListener('click', (event) => {
-    const deleteBtn = event.target.closest('.btn-delete-row');
-    if (deleteBtn) {
-      // 找到按鈕所在的該列（.member-row）並精準移除
-      const targetRow = deleteBtn.closest('.member-row');
-      if (targetRow) {
-        targetRow.remove();
-      }
-    }
-  });
-})();
-</script>
-
-
-</div>
-
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (() => {
-    'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
       if (!form.checkValidity()) {
         event.preventDefault()
@@ -308,8 +326,72 @@ toggleBtn.addEventListener('click', () => {
 
       form.classList.add('was-validated')
     }, false)
-    })
-    })()        
+  })
+})()
 </script>
+
+
+
+<div class="input-group input-group-lg my-3">
+  <span class="input-group-text">輸入密碼</span>
+  <input type="password" class="form-control">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa-solid fa-eye"></i></button>
+</div>
+
+
+
+
+<!-- 密碼輸入群組 -->
+<div class="input-group input-group-lg my-3">
+  <span class="input-group-text" id="passwordLabel">輸入密碼</span>
+  <input 
+    type="password" 
+    class="form-control" 
+    id="passwordInput" 
+    aria-label="輸入密碼" 
+    aria-describedby="passwordLabel"
+    autocomplete="current-password"
+  >
+  <button 
+    class="btn btn-outline-secondary" 
+    type="button" 
+    id="togglePasswordBtn" 
+    aria-label="顯示或隱藏密碼"
+  >
+  <i class="fa-solid fa-eye-slash" id="toggleIcon"></i>
+  </button>
+</div>
+
+<script>
+  (() => {
+    const passwordInput = document.getElementById('passwordInput');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const toggleIcon = document.getElementById('toggleIcon');
+
+    if (!passwordInput || !togglePasswordBtn || !toggleIcon) {
+      return;
+    }
+
+    const togglePasswordVisibility = () => {
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      const targetType = isPassword ? 'text' : 'password';
+      
+      // 切換 input 屬性
+      passwordInput.setAttribute('type', targetType);
+      
+      // 切換 Bootstrap Icons 樣式
+      toggleIcon.classList.toggle('fa-eye-slash', !isPassword);
+      toggleIcon.classList.toggle('fa-eye', isPassword);
+    };
+
+    togglePasswordBtn.addEventListener('click', togglePasswordVisibility);
+  })();
+</script>
+
+
+
+
+</div>
+
 </body>
 </html>
